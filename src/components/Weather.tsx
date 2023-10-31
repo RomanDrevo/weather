@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import {useGetWeatherQuery} from '../store/weatherApi';
+import {useGetWeatherQuery, WeatherData} from '../store/weatherApi';
+import SearchBar from "./SearchBar";
+import WeatherDetails from "./WeatherDetails";
+
 
 const Weather = () => {
     const [city, setCity] = useState<string>('');
@@ -9,32 +12,23 @@ const Weather = () => {
 
 
 
-    const location = data?.data[0]
+    const location = data?.data[0] as WeatherData
 
+    console.log('--->>>data: ', data)
     console.log('--->>>location: ', location)
 
+
     return (
-        <div>
-            <input
-                type="text"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                placeholder="Enter city"
-            />
-            <button onClick={() => setCity('')}>Clear</button>
+        <div className='weather'>
+           <SearchBar handleSearch={setCity} value={city} />
             {isLoading && <p>Loading...</p>}
             {error && <p>Error fetching weather data</p>}
-            {/*{data && (*/}
-            {/*    <div>*/}
-            {/*        <h3>{data.name}</h3>*/}
-            {/*        <p>{data.weather[0].description}</p>*/}
-            {/*        <img*/}
-            {/*            src={`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`}*/}
-            {/*            alt={data.weather[0].description}*/}
-            {/*        />*/}
-            {/*        <p>Temperature: {data.main.temp}°C</p>*/}
-            {/*    </div>*/}
-            {/*)}*/}
+            {data && (
+                <div className='weather-wrapper'>
+                    <WeatherDetails location={location} />
+                </div>
+
+            )}
         </div>
     );
 }

@@ -1,38 +1,59 @@
+
 .App {
   text-align: center;
+  padding: 24px;
+  background: linear-gradient(190deg, #2E335A, #1C1B33);
+  font-family: 'SF UI Display', serif;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.weather-wrapper{
+  position: relative;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.weather-details{
+  background-image: url("./assets/rectangle.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  min-height: 174px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 0 20px;
+  margin-top: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.weather-details-text{
+  color: #fff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.historical-weather-details .weather-details-text{
+  color: lightslategray;
 }
+
+.historical-weather-details {
+  display: flex;
+}
+
+
+
+.weather-details-text.temp{
+  font-size: 64px;
+}
+
+.weather-details-icon{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.location{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+}
+
