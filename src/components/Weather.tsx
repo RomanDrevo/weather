@@ -7,7 +7,11 @@ const Weather = () => {
         skip: city === '',
     });
 
-    console.log('--->>>data: ', data)
+
+
+    const location = data?.data[0]
+
+    console.log('--->>>location: ', location)
 
     return (
         <div>
