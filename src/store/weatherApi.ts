@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {getTodayDate, getYesterdayDate} from "../helpers";
 
-const apiKey = '5a8ad698f92a46c9be4bd4050c1caec4'
+const apiKey = process.env.REACT_APP_KEY
 
 export const weatherApi = createApi({
     reducerPath: 'weatherApi',
