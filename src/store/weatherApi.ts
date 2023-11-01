@@ -1,37 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {getTodayDate, getYesterdayDate} from "../helpers";
 
 const apiKey = '5a8ad698f92a46c9be4bd4050c1caec4'
-
-
-
-const getTodayDate = () => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed in JavaScript
-    const day = String(today.getDate()).padStart(2, '0');
-
-    const formattedDate = `${year}-${month}-${day}`;
-
-    return formattedDate
-}
-
-const getYesterdayDate = () => {
-    const today = new Date();
-    const yesterday = new Date(today.getTime() - 24 * 60 * 60 * 1000);
-    const year = yesterday.getFullYear();
-    const month = String(yesterday.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed in JavaScript
-    const day = String(yesterday.getDate()).padStart(2, '0');
-
-    const formattedDate = `${year}-${month}-${day}`;
-
-    return formattedDate
-}
-
-console.log(getTodayDate(), ':' , getYesterdayDate())
-
-
-
-
 
 export const weatherApi = createApi({
     reducerPath: 'weatherApi',
@@ -48,7 +18,7 @@ export const weatherApi = createApi({
 
 export const { useGetWeatherQuery, useGetHistoricalWeatherQuery } = weatherApi;
 
-interface WeatherDataResponse {
+export interface WeatherDataResponse {
     data: WeatherData[]
     count: number
 }
@@ -63,7 +33,7 @@ export interface WeatherData {
     pres: number
     rh: number
     slp: number
-    snow: 0
+    snow: number
     sunrise: string
     sunset: string
     temp: number
@@ -71,6 +41,7 @@ export interface WeatherData {
     weather: {description: string, code: number, icon: string}
     wind_cdir_full: string
     wind_spd: number
+    wind_cdir: string
 }
 
 
@@ -82,4 +53,11 @@ export interface HistoricalWeatherData {
       min_temp: number
       max_temp: number
     }[]
+}
+
+export interface FetchError {
+    status: number
+    data:{
+        error: string
+    }
 }

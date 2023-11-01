@@ -1,23 +1,17 @@
 import React from "react";
-import { Input } from 'antd';
+import {Input} from 'antd';
 
-const { Search } = Input;
+const {Search} = Input;
 
 
-
-const SearchBar = ({handleSearch, value}: {handleSearch: (value: string) => void, value: string}) => {
+const SearchBar = ({handleSearch, value}: { handleSearch: (value: string) => void, value: string }) => {
     return (
-
-
-            <Search
-                type="text"
-                value={value}
-                onChange={(e) => handleSearch(e.target.value)}
-                placeholder="Enter city"
-            />
-
-
-
+        <Search
+            type="text"
+            value={value}
+            onChange={(e) => handleSearch(e.target.value)}
+            placeholder="Enter city"
+        />
     )
 }
 

@@ -1,28 +1,41 @@
 import React, { useState } from 'react';
-import {useGetWeatherQuery, WeatherData} from '../store/weatherApi';
+import {FetchError, WeatherData} from '../store/weatherApi';
 import SearchBar from "./SearchBar";
 import WeatherDetails from "./WeatherDetails";
+import {Alert} from "antd";
+import {useWeather} from "../hooks/useWeather";
+
+const onClose = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log(e, 'I was closed.');
+};
 
 
 const Weather = () => {
     const [city, setCity] = useState<string>('');
-    const { data, error, isLoading } = useGetWeatherQuery(city, {
-        skip: city === '',
-    });
+    const { data, error, isLoading, isError } = useWeather(city);
 
+    const fetchError = error as  FetchError;
 
+    if(fetchError && 'data' in fetchError){
+        return (
+            <Alert
+                message="Something went wrong..."
+                description={fetchError.data.error}
+                type="error"
+                closable
+                onClose={onClose}
+            />
+
+        )
+    }
 
     const location = data?.data[0] as WeatherData
-
-    console.log('--->>>data: ', data)
-    console.log('--->>>location: ', location)
 
 
     return (
         <div className='weather'>
            <SearchBar handleSearch={setCity} value={city} />
             {isLoading && <p>Loading...</p>}
-            {error && <p>Error fetching weather data</p>}
             {data && (
                 <div className='weather-wrapper'>
                     <WeatherDetails location={location} />
