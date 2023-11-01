@@ -1,11 +1,14 @@
 
 .App {
-  text-align: center;
   padding: 24px;
   height: 100vh;
   background: linear-gradient(190deg, #2E335A, #1C1B33);
   font-family: 'SF UI Display', serif;
 
+}
+
+.weather{
+  max-width: 390px;
 }
 
 .weather-wrapper{
@@ -65,11 +68,15 @@
   height: 80px;
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.85);
-  position: relative;
+  /*position: relative;*/
   color: #555;
   text-shadow: 1px 1px 1px white;
   align-self: center;
-  margin-top: 20px;
+  /*margin-top: 20px;*/
+  position: absolute;
+  top: 196px;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .compass:before {

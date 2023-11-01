@@ -12,7 +12,7 @@ const onClose = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 
 const Weather = () => {
     const [city, setCity] = useState<string>('');
-    const { data, error, isLoading, isError } = useWeather(city);
+    const { data, error, isLoading } = useWeather(city);
 
     const fetchError = error as  FetchError;
 
