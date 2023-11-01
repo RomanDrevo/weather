@@ -42,6 +42,13 @@
   display: flex;
 }
 
+.historical-weather-details span:first-child {
+  margin-right: 10px;
+}
+
+.location div:first-child {
+  margin-top: 10px;
+}
 
 
 .weather-details-text.temp{
